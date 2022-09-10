@@ -28,6 +28,7 @@ namespace HotelFinder.API
         {
             services.AddRazorPages();
             services.AddControllers();
+            services.AddSwaggerDocument();
             //birisi senin constructor inde IHotelService istioyorsa ona hotelmanager üret demek
             //bunuda controller içinde kullandýk 
             /*
@@ -68,6 +69,8 @@ namespace HotelFinder.API
             app.UseStaticFiles();
 
             app.UseRouting();
+            app.UseOpenApi();
+            app.UseSwaggerUi3();
 
             app.UseAuthorization();
 

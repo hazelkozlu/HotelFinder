@@ -44,5 +44,12 @@ namespace HotelFinder.Business.Concrete
         {
             return _hotelRepository.UpdateHotel(hotel); 
         }
+
+        public Hotel GetHotelByName(string name)
+        {
+           
+                return _hotelRepository.GetHotelByName(name);
+            
+        }
     }
 }
