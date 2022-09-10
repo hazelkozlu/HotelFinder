@@ -12,7 +12,7 @@ namespace HotelFinder.DataAccess.Concrete
        
         public Hotel CreateHotel(Hotel hotel)
         {
-            using (var hotelDbContext = new HotelDbContext())
+            using(var hotelDbContext = new HotelDbContext())
             {
                 
                 hotelDbContext.Hotels.Add(hotel);   
@@ -23,7 +23,7 @@ namespace HotelFinder.DataAccess.Concrete
 
         public void DeleteHotel(int id)
         {
-            using (var hotelDbContext = new HotelDbContext())
+            using(var hotelDbContext = new HotelDbContext())
             {
                 var deletedHotel = GetHotelById(id);
                 hotelDbContext.Hotels.Remove(deletedHotel); 
@@ -33,7 +33,7 @@ namespace HotelFinder.DataAccess.Concrete
 
         public List<Hotel> GetAllHotels()
         {
-            using (var hotelDbContext = new HotelDbContext())
+            using(var hotelDbContext = new HotelDbContext())
             {
                 return hotelDbContext.Hotels.ToList();
             }
@@ -44,6 +44,14 @@ namespace HotelFinder.DataAccess.Concrete
             using (var hotelDbContext = new HotelDbContext())
             {
                 return hotelDbContext.Hotels.Find(id);
+            }
+        }
+
+        public Hotel GetHotelByName(string name)
+        {
+            using (var hotelDbContext = new HotelDbContext())
+            {
+                return hotelDbContext.Hotels.FirstOrDefault(x=>x.Name.ToLower()==name.ToLower());
             }
         }
 
