@@ -11,9 +11,10 @@ namespace HotelFinder.Business.Concrete
     public class HotelManager : IHotelService
     {
         private IHotelRepository _hotelRepository;
-        public HotelManager()
+        //dependency injection gereği bu şekilde kullanılır
+        public HotelManager(IHotelRepository hotelRepository)
         {
-            _hotelRepository = new HotelRepository();
+            _hotelRepository =hotelRepository;
         }
         public List<Hotel> GetAllHotels()
         {

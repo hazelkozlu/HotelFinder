@@ -13,10 +13,10 @@ namespace HotelFinder.API.Controllers
     {
         //hotelbusinesstan bir örnek lazım
         private IHotelService _hotelService;
-        public HotelsController()
+        public HotelsController(IHotelService hotelService)
         {
             //hotelServise e değer ataması yap
-            _hotelService = new HotelManager();
+            _hotelService = hotelService;
         }
         [HttpGet]
         public List<Hotel> Get()

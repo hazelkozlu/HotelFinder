@@ -1,3 +1,7 @@
+using HotelFinder.Business.Abstract;
+using HotelFinder.Business.Concrete;
+using HotelFinder.DataAccess.Abstract;
+using HotelFinder.DataAccess.Concrete;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -24,6 +28,29 @@ namespace HotelFinder.API
         {
             services.AddRazorPages();
             services.AddControllers();
+            //birisi senin constructor inde IHotelService istioyorsa ona hotelmanager üret demek
+            //bunuda controller içinde kullandýk 
+            /*
+             * //hotelbusinesstan bir örnek lazým
+               private IHotelService _hotelService;
+              public HotelsController(IHotelService hotelService)
+              {
+                //hotelServise e deðer atamasý yap
+                _hotelService = hotelService;
+        }
+             */
+            services.AddSingleton<IHotelService, HotelManager>();
+            //birisi senin constructor inde IHotelRepository istioyorsa ona hotelreposiyory üret demek new le yani
+            services.AddSingleton<IHotelRepository, HotelRepository>();
+            //dependency injection için business katmanýnda HotelManager ctor daki IHotelRepository hotelRepository parametresi alýr
+            /*
+             *  private IHotelRepository _hotelRepository;
+             //dependency injection gereði bu þekilde kullanýlýr
+              public HotelManager(IHotelRepository hotelRepository)
+               {
+                   _hotelRepository =hotelRepository;
+               }
+                */
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
